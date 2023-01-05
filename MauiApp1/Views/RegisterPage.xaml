@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModel"
+             x:DataType="viewmodel:MainViewModel"
+             x:Class="MauiApp1.Views.RegisterPage"
+             Title="الإعداد"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout FlowDirection="RightToLeft">
+        <Label 
+            Text="إعداد التطبيق"
+            VerticalOptions="Center" 
+            HorizontalOptions="Start"
+            Padding="15"/>
+        <Line 
+            BackgroundColor="#000" 
+            WidthRequest="500" 
+            HeightRequest="2" 
+            HorizontalOptions="Start" />
+
+        <Grid
+            Padding="30"
+            ColumnDefinitions="150, 200, 150, 200"
+            ColumnSpacing="20"
+            RowDefinitions="40, *"
+            RowSpacing="40"
+        >
+            <Label 
+                HorizontalOptions="End"
+                Padding="10"
+                Text="اسم المسجد"
+                Grid.Row="0"
+                Grid.Column="0" />
+
+            <Entry 
+                HorizontalOptions="Start" 
+                Grid.Row="0"
+                Grid.Column="1" 
+                WidthRequest="200" />
+
+            <Label 
+                HorizontalOptions="End"
+                Padding="10"
+                Text="اسم الدورة"
+                Grid.Row="0"
+                Grid.Column="2" />
+
+            <Entry 
+                HorizontalOptions="Start" 
+                Grid.Row="0"
+                Grid.Column="3" 
+                WidthRequest="200" />
+
+
+            <Label 
+                HorizontalOptions="End"
+                Padding="10"
+                Text="نظام الدورة"
+                Grid.Row="1"
+                Grid.Column="0" />
+
+            <CollectionView 
+                SelectionMode="Single"
+                ItemsSource="{Binding Systems}"
+                EmptyView="No items to display"
+                Grid.Row="1"
+                Grid.Column="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type x:String}">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                               Text="{Binding .}"
+                               FontAttributes="Bold" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Grid 
+                Padding="10"
+                RowDefinitions="20"
+                Grid.Row="1"
+                Grid.Column="2">
+                <Button 
+                    HeightRequest="40"
+                    Command="{Binding PickFileCommand}"
+                    Text="اختيار شعار" />
+            </Grid>
+
+            <Image 
+                x:Name="logoView"
+                Source="{Binding ImageSource}"
+                BackgroundColor="#eee" 
+                Grid.Row="1"
+                Grid.Column="3"
+                HeightRequest="200"
+                WidthRequest="200" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
